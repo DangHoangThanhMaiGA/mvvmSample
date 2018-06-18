@@ -7,7 +7,7 @@ import com.insight.ga_tech.mvvmsample.data.database.entity.User
 
 @Database(entities = arrayOf(
     User::class
-), version = 8, exportSchema = false)
+), version = 1, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
   abstract fun userDao(): UserDao
 }

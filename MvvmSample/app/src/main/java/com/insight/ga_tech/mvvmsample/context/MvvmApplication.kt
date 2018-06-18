@@ -17,6 +17,6 @@ class MvvmApplication: Application() {
 
   companion object {
     private const val DB_NAME = "mvvm-sample-db.db"
-    private var database: AppDatabase? = null
+    public var database: AppDatabase? = null
   }
 }
