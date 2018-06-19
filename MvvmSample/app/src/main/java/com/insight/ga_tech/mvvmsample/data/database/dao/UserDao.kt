@@ -15,7 +15,7 @@ interface UserDao {
   fun getUser(): User
 
   @Update
-  fun updateUser(user: User): Boolean
+  fun updateUser(user: User)
 
   @Insert
   fun insertUser(user: User): Long

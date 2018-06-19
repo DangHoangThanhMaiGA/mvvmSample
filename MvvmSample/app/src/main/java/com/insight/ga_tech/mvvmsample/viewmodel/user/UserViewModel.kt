@@ -1,5 +1,6 @@
 package com.insight.ga_tech.mvvmsample.viewmodel.user
 
+import android.content.Context
 import android.databinding.BaseObservable
 import android.databinding.Bindable
 import android.util.Log
@@ -10,14 +11,14 @@ import java.util.Locale
 import java.util.Observable
 import java.util.Observer
 
-class UserViewModel(private var user: User) : BaseObservable(), UserView, Observer {
+class UserViewModel(private var user: User, private val context: Context) : BaseObservable(), UserView, Observer {
 
-  private var repository = UserRepository(this)
+  private var repository = UserRepository(this, context)
 
   init {
     Log.e("UserViewModel", "init")
     user.addObserver(this)
-//    repository.loadUserFromDb()
+    repository.loadUserFromDb()
   }
 
   override fun success(userAPI: User) {

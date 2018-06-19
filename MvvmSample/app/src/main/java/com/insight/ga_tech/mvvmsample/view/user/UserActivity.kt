@@ -11,18 +11,13 @@ import com.insight.ga_tech.mvvmsample.model.User
 import com.insight.ga_tech.mvvmsample.viewmodel.user.UserViewModel
 
 class UserActivity : AppCompatActivity() {
-private lateinit var userBinding: ActivityUserBinding
+  private lateinit var userBinding: ActivityUserBinding
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_user)
 
-    var user = User()
-    user.firstName = "aaa"
-    user.lastName = "bbb"
-    user.age = 63
-
-    val userViewModel = UserViewModel(user)
+    val userViewModel = UserViewModel(User(), applicationContext)
     userBinding = DataBindingUtil.setContentView(this, R.layout.activity_user)
     userBinding.user = userViewModel
   }
