@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+
+  <data>
+    <import type="android.view.View" />
+    <variable
+        name="itemNewsViewModel"
+        type="com.insight.ga_tech.mvvmsample.viewmodel.news.ItemNewsViewModel"/>
+  </data>
+
+  <LinearLayout
+      android:id="@+id/item_list"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="vertical"
+      android:clickable="true"
+      android:onClick="@{itemNewsViewModel::onItemClick}">
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="3dp"
+        android:text="@{itemNewsViewModel.title}"
+        android:textSize="18sp"
+        android:textStyle="bold"/>
+    <TextView
+        android:id="@+id/content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="3dp"
+        android:text="@{itemNewsViewModel.content}"/>
+  </LinearLayout>
+
+</layout>
