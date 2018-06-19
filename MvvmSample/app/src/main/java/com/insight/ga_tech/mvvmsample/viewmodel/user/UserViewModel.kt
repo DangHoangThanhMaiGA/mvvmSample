@@ -1,47 +1,52 @@
 package com.insight.ga_tech.mvvmsample.viewmodel.user
 
-import android.arch.lifecycle.LiveData
-import android.arch.lifecycle.MutableLiveData
-import android.arch.lifecycle.ViewModel
-import android.os.AsyncTask
+import android.databinding.BaseObservable
+import android.databinding.Bindable
 import android.util.Log
-import com.insight.ga_tech.mvvmsample.context.MvvmApplication
-import com.insight.ga_tech.mvvmsample.data.database.entity.User
+import android.view.View
+import com.insight.ga_tech.mvvmsample.model.User
 import com.insight.ga_tech.mvvmsample.repository.user.UserRepository
-import java.util.concurrent.Executor
+import java.util.Locale
+import java.util.Observable
+import java.util.Observer
 
-class UserViewModel : ViewModel() {
-  private var user: LiveData<User> = MutableLiveData<User>()
-  private var repository: UserRepository = UserRepository()
+class UserViewModel(private var user: User) : BaseObservable(), UserView, Observer {
 
+  private var repository = UserRepository(this)
 
-  fun getUser(): LiveData<User>? {
-    return repository.getUser()
+  init {
+    Log.e("UserViewModel", "init")
+    user.addObserver(this)
+//    repository.loadUserFromDb()
   }
 
-  fun updateUser(user: User) {
-    repository.update(user)
+  override fun success(userAPI: User) {
+    Log.e("UserViewModel", "success")
+    user = userAPI
+    notifyChange()
   }
 
-  fun insertUser(user: User) {
-//    var id = MvvmApplication.database?.userDao()?.insertUser(user)
-//    Log.e("UserViewModel", "insert $id")
-//    id?.let {
-//      if (it >= 0) {
-//        Log.e("UserViewModel", "insert success")
-//      } else {
-//        Log.e("UserViewModel", "insert failed")
-//      }
-//    }
-    doAsync().execute(user)
+  override fun failure() {
+    user = User()
   }
 
-}
+  val name: String
+    @Bindable get() {
+      Log.e("UserViewModel", "getName")
+      return user.firstName + " " + user.lastName
+    }
 
-class doAsync() : AsyncTask<User, Void, Long>() {
-  override fun doInBackground(vararg params: User): Long?{
-    MvvmApplication.database?.userDao()?.insertUser(params[0])
-//    Log.e("doAsync", "id: $id")
-    return null
+  val age: String
+    @Bindable get() {
+      Log.e("UserViewModel", "getAge")
+      return if (user.age <= 0) return ""
+      else String.format(Locale.ENGLISH, "%d years old", user.age)
+    }
+
+  override fun update(o: Observable?, arg: Any?) {
+  }
+
+  fun onButtonClick(view: View) {
+    repository.getUser()
   }
 }

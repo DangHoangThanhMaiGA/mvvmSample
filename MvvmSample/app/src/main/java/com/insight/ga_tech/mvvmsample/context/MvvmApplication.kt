@@ -7,6 +7,7 @@ import com.insight.ga_tech.mvvmsample.data.database.AppDatabase
 class MvvmApplication: Application() {
   override fun onCreate() {
     super.onCreate()
+    instance = this
 
     // DB
     database = Room.databaseBuilder(applicationContext, AppDatabase::class.java, DB_NAME)
@@ -17,6 +18,7 @@ class MvvmApplication: Application() {
 
   companion object {
     private const val DB_NAME = "mvvm-sample-db.db"
-    public var database: AppDatabase? = null
+    var database: AppDatabase? = null
+    lateinit var instance: MvvmApplication
   }
 }

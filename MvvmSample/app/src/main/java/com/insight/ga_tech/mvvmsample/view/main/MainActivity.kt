@@ -8,6 +8,7 @@ import android.widget.Button
 import com.amitshekhar.DebugDB
 import com.insight.ga_tech.mvvmsample.R
 import com.insight.ga_tech.mvvmsample.R.layout
+import com.insight.ga_tech.mvvmsample.view.news.NewsActivity
 import com.insight.ga_tech.mvvmsample.view.user.UserActivity
 
 class MainActivity : AppCompatActivity(), OnClickListener {
@@ -34,7 +35,9 @@ class MainActivity : AppCompatActivity(), OnClickListener {
       R.id.btn_view_user -> {
         startActivity(UserActivity.getIntent(applicationContext))
       }
-
+      R.id.btn_view_news -> {
+        startActivity(NewsActivity.getIntent(applicationContext))
+      }
     }
   }
 }

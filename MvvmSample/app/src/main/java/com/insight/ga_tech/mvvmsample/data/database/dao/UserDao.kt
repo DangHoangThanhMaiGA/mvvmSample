@@ -12,7 +12,7 @@ import com.insight.ga_tech.mvvmsample.data.database.entity.User
 interface UserDao {
 
   @Query("SELECT * FROM user LIMIT 1")
-  fun getUser(): LiveData<User>
+  fun getUser(): User
 
   @Update
   fun updateUser(user: User): Boolean
