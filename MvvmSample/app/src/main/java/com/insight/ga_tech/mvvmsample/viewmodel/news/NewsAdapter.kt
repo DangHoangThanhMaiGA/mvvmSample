@@ -14,7 +14,10 @@ import com.insight.ga_tech.mvvmsample.viewmodel.news.NewsAdapter.NewsViewHolder
 class NewsAdapter(val context: Context) : RecyclerView.Adapter<NewsViewHolder>() {
   var datasource = ArrayList<NewsContent>()
 
-  override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsViewHolder = NewsViewHolder(DataBindingUtil.inflate(LayoutInflater.from(parent.context), R.layout.item_news, parent, false))
+  override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsViewHolder = NewsViewHolder(DataBindingUtil.inflate(LayoutInflater.from(parent.context),
+      R.layout.item_news,
+      parent,
+      false))
 
   override fun getItemCount(): Int = datasource.size
 

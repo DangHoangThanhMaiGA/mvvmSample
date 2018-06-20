@@ -1,5 +1,6 @@
 package com.insight.ga_tech.mvvmsample.viewmodel.news
 
+import android.arch.lifecycle.ViewModel
 import android.content.Context
 import android.databinding.BaseObservable
 import android.util.Log
@@ -11,40 +12,6 @@ import io.reactivex.schedulers.Schedulers
 import java.util.Observable
 import java.util.Observer
 
-class NewsViewModel(private val newsAdapter: NewsAdapter) : BaseObservable(), Observer {
+class NewsViewModel: ViewModel() {
 
-  init {
-//    newsAdapter.addObserver(this)
-    fetchNews()
-  }
-
-  fun fetchNews() {
-    NewsService
-        .news()
-        .fetchNews()
-        .subscribeOn(Schedulers.io())
-        .observeOn(AndroidSchedulers.mainThread())
-        .subscribe({
-          if (it.isSuccessful) {
-            it.body()?.let {
-              newsAdapter.setNewsList(it.news)
-              newsAdapter.notifyDataSetChanged()
-            }
-          }
-        })
-  }
-
-  fun onClickLoadData(view: View) {
-    fetchNews()
-  }
-
-  override fun update(o: Observable?, arg: Any?) {
-    Log.e("NewsActivity", "update Observer")
-//    if (arg is ) {
-//      var newsAdapter: NewsAdapter = newsBinding.newsList.adapter as NewsAdapter
-//      newsAdapter.setNewsList(newsViewModel.getNews().news)
-//    }
-  }
-
-//  fun getNews(): News = news
 }

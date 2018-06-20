@@ -10,33 +10,35 @@
 
 
   <Button
-      android:id="@+id/btn_view_user"
+      android:id="@+id/btn_load_data_databinding"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_marginBottom="8dp"
       android:layout_marginEnd="8dp"
       android:layout_marginStart="8dp"
       android:layout_marginTop="8dp"
-      android:text="View User"
+      android:text="Load data with DataBinding"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.181"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toTopOf="parent"
-      app:layout_constraintVertical_bias="0.308"
+      app:layout_constraintVertical_bias="0.017"
       />
   <Button
-      android:id="@+id/btn_view_news"
+      android:id="@+id/btn_load_data_no_databinding"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_marginBottom="8dp"
       android:layout_marginEnd="8dp"
       android:layout_marginStart="8dp"
       android:layout_marginTop="8dp"
-      android:text="View News"
+      android:text="Load data without DataBinding"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.227"
       app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/btn_view_user"
-      app:layout_constraintVertical_bias="0.114"
+      app:layout_constraintTop_toBottomOf="@+id/btn_load_data_databinding"
+      app:layout_constraintVertical_bias="0.02"
       />
 </android.support.constraint.ConstraintLayout>

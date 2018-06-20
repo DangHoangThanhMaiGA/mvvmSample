@@ -20,9 +20,11 @@
     </activity>
     <activity android:name=".view.user.EditUserActivity">
     </activity>
-    <activity android:name=".view.user.UserActivity">
+    <activity android:name=".view.user.UserDataBindingActivity">
     </activity>
     <activity android:name=".view.news.NewsActivity">
+    </activity>
+    <activity android:name=".view.user.UserWithoutDataBindingActivity">
     </activity>
   </application>
 

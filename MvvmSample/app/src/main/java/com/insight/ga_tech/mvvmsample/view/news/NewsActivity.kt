@@ -10,11 +10,13 @@ import android.util.Log
 import com.insight.ga_tech.mvvmsample.R
 import com.insight.ga_tech.mvvmsample.databinding.ActivityNewsBinding
 import com.insight.ga_tech.mvvmsample.viewmodel.news.NewsAdapter
+import com.insight.ga_tech.mvvmsample.viewmodel.news.NewsObserver
+import com.insight.ga_tech.mvvmsample.viewmodel.news.NewsObserver.NewsObserverListener
 import com.insight.ga_tech.mvvmsample.viewmodel.news.NewsViewModel
 import java.util.Observable
 import java.util.Observer
 
-class NewsActivity : AppCompatActivity() {
+class NewsActivity : AppCompatActivity(), NewsObserverListener {
   private lateinit var newsBinding: ActivityNewsBinding
   private lateinit var newsViewModel: NewsViewModel
 
@@ -23,12 +25,16 @@ class NewsActivity : AppCompatActivity() {
 
     // init databinding
     newsBinding = DataBindingUtil.setContentView(this, R.layout.activity_news)
-//    newsBinding.newsViewModel = NewsViewModel()
+    newsBinding.news = NewsObserver(this)
 
     // setup list
-//    var newsAdapter = NewsAdapter(applicationContext)
+    var newsAdapter = NewsAdapter(applicationContext)
 //    newsBinding.newsList.adapter = newsAdapter
 //    newsBinding.newsList.layoutManager = LinearLayoutManager(this)
+  }
+
+  override fun fetchNews() {
+
   }
 
   companion object {

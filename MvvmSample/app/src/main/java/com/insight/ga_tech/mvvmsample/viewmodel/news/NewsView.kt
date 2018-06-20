@@ -1,8 +1,8 @@
 package com.insight.ga_tech.mvvmsample.viewmodel.news
 
-import com.insight.ga_tech.mvvmsample.data.network.entity.News
+import com.insight.ga_tech.mvvmsample.model.News
 
 interface NewsView {
-  fun success(news: News)
+  fun success(newsList: ArrayList<News>)
   fun failure()
 }

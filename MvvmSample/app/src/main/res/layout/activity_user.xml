@@ -2,12 +2,12 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".view.user.UserActivity">
+    tools:context=".view.user.UserDataBindingActivity">
   <data>
 
     <variable
         name="user"
-        type="com.insight.ga_tech.mvvmsample.viewmodel.user.UserViewModel" />
+        type="com.insight.ga_tech.mvvmsample.viewmodel.user.UserObserver" />
   </data>
 
   <android.support.constraint.ConstraintLayout

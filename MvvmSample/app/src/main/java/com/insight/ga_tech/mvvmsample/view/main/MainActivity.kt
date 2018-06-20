@@ -5,38 +5,34 @@ import android.os.Bundle
 import android.view.View
 import android.view.View.OnClickListener
 import android.widget.Button
-import com.amitshekhar.DebugDB
 import com.insight.ga_tech.mvvmsample.R
 import com.insight.ga_tech.mvvmsample.R.layout
-import com.insight.ga_tech.mvvmsample.view.news.NewsActivity
-import com.insight.ga_tech.mvvmsample.view.user.UserActivity
+import com.insight.ga_tech.mvvmsample.view.user.UserDataBindingActivity
+import com.insight.ga_tech.mvvmsample.view.user.UserWithoutDataBindingActivity
 
 class MainActivity : AppCompatActivity(), OnClickListener {
-  lateinit var btnViewUser: Button
-  lateinit var btnViewNews: Button
+  private lateinit var btnLoadDataWithBinding: Button
+  private lateinit var btnLoadDataWithoutBinding: Button
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(layout.activity_main)
 
-    btnViewUser = findViewById(R.id.btn_view_user)
-    btnViewNews = findViewById(R.id.btn_view_news)
+    btnLoadDataWithBinding = findViewById(R.id.btn_load_data_databinding)
+    btnLoadDataWithoutBinding = findViewById(R.id.btn_load_data_no_databinding)
 
-    btnViewUser.setOnClickListener(this)
-    btnViewNews.setOnClickListener(this)
-
-    DebugDB.getAddressLog()
+    btnLoadDataWithBinding.setOnClickListener(this)
+    btnLoadDataWithoutBinding.setOnClickListener(this)
   }
-
 
   override fun onClick(v: View?) {
     v ?: return
     when(v.id) {
-      R.id.btn_view_user -> {
-        startActivity(UserActivity.getIntent(applicationContext))
+      R.id.btn_load_data_databinding -> {
+        startActivity(UserDataBindingActivity.getIntent(applicationContext))
       }
-      R.id.btn_view_news -> {
-        startActivity(NewsActivity.getIntent(applicationContext))
+      R.id.btn_load_data_no_databinding -> {
+        startActivity(UserWithoutDataBindingActivity.getIntent(applicationContext))
       }
     }
   }
