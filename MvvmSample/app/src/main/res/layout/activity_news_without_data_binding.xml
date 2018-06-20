@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.news.NewsWithoutDataBindingActivity"
+    >
+  <android.support.v7.widget.RecyclerView
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:id="@+id/news_list"/>
+
+  <Button
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginBottom="16dp"
+      android:layout_marginEnd="8dp"
+      android:layout_marginStart="8dp"
+      android:text="Load data"
+      android:background="#1291df"
+      android:textColor="#fff"
+      android:padding="8dp"
+      android:id="@+id/btn_load"
+      app:layout_constraintBottom_toBottomOf="@+id/news_list"
+      app:layout_constraintEnd_toEndOf="@+id/news_list"
+      app:layout_constraintHorizontal_bias="0.501"
+      app:layout_constraintStart_toStartOf="@+id/news_list"
+      />
+
+</android.support.constraint.ConstraintLayout>
