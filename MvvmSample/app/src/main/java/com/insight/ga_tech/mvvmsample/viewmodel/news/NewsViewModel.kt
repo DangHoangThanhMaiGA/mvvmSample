@@ -1,5 +1,6 @@
 package com.insight.ga_tech.mvvmsample.viewmodel.news
 
+import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import android.content.Context
 import android.databinding.BaseObservable
@@ -13,5 +14,14 @@ import java.util.Observable
 import java.util.Observer
 
 class NewsViewModel: ViewModel() {
+  private var newsList = MutableLiveData<List<News>>()
+
+  fun setNewsList(newsList: List<News>) {
+    this.newsList.value = newsList
+  }
+
+  fun getNewsList(): MutableLiveData<List<News>> {
+    return this.newsList
+  }
 
 }
