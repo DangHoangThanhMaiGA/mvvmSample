@@ -2,24 +2,28 @@ package com.insight.ga_tech.mvvmsample.view.news
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
+import android.arch.paging.PagedList
 import android.content.Context
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.View
 import android.view.View.OnClickListener
 import android.widget.Button
 import com.insight.ga_tech.mvvmsample.R
+import com.insight.ga_tech.mvvmsample.model.NetworkState
 import com.insight.ga_tech.mvvmsample.model.News
 import com.insight.ga_tech.mvvmsample.repository.news.NewsRepository
+import com.insight.ga_tech.mvvmsample.viewmodel.news.NewsPagedListViewModel
 import com.insight.ga_tech.mvvmsample.viewmodel.news.NewsView
 import com.insight.ga_tech.mvvmsample.viewmodel.news.NewsViewModel
 import com.insight.ga_tech.mvvmsample.viewmodel.news.adapter.NewsWithoutBindingAdapter
 
 class NewsWithoutDataBindingActivity : AppCompatActivity(), OnClickListener {
-  private lateinit var newsViewModel: NewsViewModel
+  private lateinit var newsViewModel: NewsPagedListViewModel
 
   // layout
   private lateinit var recyclerView: RecyclerView
@@ -31,29 +35,25 @@ class NewsWithoutDataBindingActivity : AppCompatActivity(), OnClickListener {
     btnLoad = findViewById(R.id.btn_load)
     recyclerView = findViewById(R.id.news_list)
 
+    newsViewModel = ViewModelProviders.of(this).get(NewsPagedListViewModel::class.java)
+
     // setup list
-    var newsAdapter = NewsWithoutBindingAdapter(applicationContext)
+    var newsAdapter = NewsWithoutBindingAdapter()
+    newsViewModel.newsList.observe(this, Observer<PagedList<News>> {
+      val adapter = recyclerView.adapter
+      if (adapter is NewsWithoutBindingAdapter) {
+        adapter.apply {
+          this.dataSource = null
+          this.dataSource = it
+          notifyDataSetChanged()
+        }
+      }
+    })
     recyclerView.apply {
       this.adapter = newsAdapter
       this.layoutManager = LinearLayoutManager(applicationContext)
     }
 
-    // load data
-    newsViewModel = NewsViewModel()
-    newsViewModel = ViewModelProviders.of(this).get(NewsViewModel::class.java)
-    newsViewModel.getNewsList().observe(this, Observer { newsList ->
-      newsList?.let {
-        val adapter = recyclerView.adapter
-        if (adapter is NewsWithoutBindingAdapter) {
-          adapter.apply {
-            this.dataSource = null
-            this.dataSource = newsList
-            notifyDataSetChanged()
-          }
-        }
-      }
-    })
-    newsViewModel.fetchNews()
     btnLoad.setOnClickListener(this)
   }
 
@@ -62,7 +62,7 @@ class NewsWithoutDataBindingActivity : AppCompatActivity(), OnClickListener {
     v ?: return
     when(v.id) {
       R.id.btn_load -> {
-        newsViewModel.fetchNews()
+        newsViewModel.refresh()
       }
     }
   }
