@@ -1,8 +1,6 @@
 # MvvmSample Overview
 This app uses new MVVM Architecture and intergrates Android Components.
 
-
-
 # Library
 
 * Gradle version: `3.1.3`
@@ -12,6 +10,7 @@ This app uses new MVVM Architecture and intergrates Android Components.
 * Lifecycle: `1.1.1`
 * Room persistence: `1.1.0`
 * Retrofit: `2.3.0`
+* Paging: `1.0.0`
 
 # Project Screens
 
@@ -36,6 +35,9 @@ This app uses new MVVM Architecture and intergrates Android Components.
 
 ![screen shot 2018-06-21 at 15 54 15](https://user-images.githubusercontent.com/37870420/41708666-7215ba48-756b-11e8-834f-cdc063cf3008.png)
 
+* With Paging
+
+![screen shot 2018-06-21 at 17 10 27](https://user-images.githubusercontent.com/37870420/41713000-2d13caec-7576-11e8-98f4-0cf509ac176c.png)
 
 # Preferences
 
