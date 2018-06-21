@@ -1,8 +1,17 @@
-# MvvmSample
+# MvvmSample Overview
+This app uses new MVVM Architecture and intergrates Android Components.
 
-* Gradle version: 3.1.3
-* Kotlin version: 1.2.3
-* Build tool: 27.0.3
+
+
+# Library
+
+* Gradle version: `3.1.3`
+* Kotlin version: `1.2.3`
+* Build tool: `27.0.3`
+
+* Lifecycle: `1.1.1`
+* Room persistence: `1.1.0`
+* Retrofit: `2.3.0`
 
 # Project Screens
 
@@ -20,8 +29,16 @@
 # Project Architecture
 
 * Without DataBinding
-(WIP)
 
+![screen shot 2018-06-21 at 15 37 26](https://user-images.githubusercontent.com/37870420/41707785-203ebd20-7569-11e8-820d-f999e19f9327.png)
 
 * With DataBinding
-(WIP)
+
+![screen shot 2018-06-21 at 15 54 15](https://user-images.githubusercontent.com/37870420/41708666-7215ba48-756b-11e8-834f-cdc063cf3008.png)
+
+
+# Preferences
+
+* https://developer.android.com/topic/libraries/architecture/livedata
+* https://developer.android.com/topic/libraries/architecture/viewmodel
+* https://developer.android.com/topic/libraries/data-binding/
