@@ -17,8 +17,7 @@ import com.insight.ga_tech.mvvmsample.viewmodel.user.UserView
 import com.insight.ga_tech.mvvmsample.viewmodel.user.UserViewModel
 import java.util.Locale
 
-class UserWithoutDataBindingActivity : AppCompatActivity(), UserView, OnClickListener {
-  private lateinit var repository: UserRepository
+class UserWithoutDataBindingActivity : AppCompatActivity(), OnClickListener {
   private lateinit var userViewModel: UserViewModel
 
   private lateinit var txtName: TextView
@@ -33,8 +32,6 @@ class UserWithoutDataBindingActivity : AppCompatActivity(), UserView, OnClickLis
     txtAge = findViewById(R.id.txt_age)
     btnLoad = findViewById(R.id.btn_load)
 
-    repository = UserRepository(this, applicationContext)
-
     // load data
     userViewModel = UserViewModel()
     userViewModel = ViewModelProviders.of(this).get(UserViewModel::class.java)
@@ -44,23 +41,14 @@ class UserWithoutDataBindingActivity : AppCompatActivity(), UserView, OnClickLis
         txtAge.setText(String.format(Locale.ENGLISH, "%d years old", user.age))
       }
     })
-    repository.loadUserFromDb()
-  }
-
-  // [UserView]
-  override fun success(user: User) {
-    userViewModel.setUser(user)
-  }
-
-  override fun failure() {
-    userViewModel.setUser(User())
+    userViewModel.loadDataFromDb()
   }
 
   override fun onClick(v: View?) {
     v ?: return
     when(v.id) {
       R.id.btn_load -> {
-        repository.getUser()
+        userViewModel.fetchUser()
       }
     }
   }

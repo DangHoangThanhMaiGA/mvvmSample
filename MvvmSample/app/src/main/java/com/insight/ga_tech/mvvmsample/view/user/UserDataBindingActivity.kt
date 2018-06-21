@@ -16,18 +16,15 @@ import com.insight.ga_tech.mvvmsample.viewmodel.user.UserObserver.UserObserverLi
 import com.insight.ga_tech.mvvmsample.viewmodel.user.UserView
 import com.insight.ga_tech.mvvmsample.viewmodel.user.UserViewModel
 
-class UserDataBindingActivity : AppCompatActivity(), UserView, UserObserverListener {
+class UserDataBindingActivity : AppCompatActivity(), UserObserverListener {
 
   private lateinit var userBinding: ActivityUserBinding
   private lateinit var userObserver: UserObserver
-  private lateinit var repository: UserRepository
   private lateinit var userViewModel: UserViewModel
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_user)
-
-    repository = UserRepository(this, applicationContext)
 
     userObserver = UserObserver(User(), this)
     userBinding = DataBindingUtil.setContentView(this, R.layout.activity_user)
@@ -41,21 +38,12 @@ class UserDataBindingActivity : AppCompatActivity(), UserView, UserObserverListe
         userObserver.setUser(user)
       }
     })
-    repository.loadUserFromDb()
-  }
-
-  // [UserView]
-  override fun success(user: User) {
-    userViewModel.setUser(user)
-  }
-
-  override fun failure() {
-    userViewModel.setUser(User())
+    userViewModel.loadDataFromDb()
   }
 
   //[UserViewModelListener]
   override fun onLoadData() {
-    repository.getUser()
+    userViewModel.fetchUser()
   }
 
   companion object {

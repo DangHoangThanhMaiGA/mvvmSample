@@ -18,9 +18,8 @@ import com.insight.ga_tech.mvvmsample.viewmodel.news.NewsView
 import com.insight.ga_tech.mvvmsample.viewmodel.news.NewsViewModel
 import com.insight.ga_tech.mvvmsample.viewmodel.news.adapter.NewsWithoutBindingAdapter
 
-class NewsWithoutDataBindingActivity : AppCompatActivity(), NewsView, OnClickListener {
+class NewsWithoutDataBindingActivity : AppCompatActivity(), OnClickListener {
   private lateinit var newsViewModel: NewsViewModel
-  private lateinit var newsRepository: NewsRepository
 
   // layout
   private lateinit var recyclerView: RecyclerView
@@ -32,7 +31,6 @@ class NewsWithoutDataBindingActivity : AppCompatActivity(), NewsView, OnClickLis
     btnLoad = findViewById(R.id.btn_load)
     recyclerView = findViewById(R.id.news_list)
 
-    newsRepository = NewsRepository(this, applicationContext)
     // setup list
     var newsAdapter = NewsWithoutBindingAdapter(applicationContext)
     recyclerView.apply {
@@ -55,17 +53,8 @@ class NewsWithoutDataBindingActivity : AppCompatActivity(), NewsView, OnClickLis
         }
       }
     })
-    newsRepository.fetchNews()
+    newsViewModel.fetchNews()
     btnLoad.setOnClickListener(this)
-  }
-
-  // [NewsView]
-  override fun success(newsList: ArrayList<News>) {
-    newsViewModel.setNewsList(newsList)
-  }
-
-  override fun failure() {
-    newsViewModel.setNewsList(ArrayList<News>())
   }
 
   // [OnClickListener]
@@ -73,7 +62,7 @@ class NewsWithoutDataBindingActivity : AppCompatActivity(), NewsView, OnClickLis
     v ?: return
     when(v.id) {
       R.id.btn_load -> {
-        newsRepository.fetchNews()
+        newsViewModel.fetchNews()
       }
     }
   }

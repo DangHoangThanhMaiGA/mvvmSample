@@ -19,16 +19,13 @@ import com.insight.ga_tech.mvvmsample.viewmodel.news.NewsObserver.NewsObserverLi
 import com.insight.ga_tech.mvvmsample.viewmodel.news.NewsView
 import com.insight.ga_tech.mvvmsample.viewmodel.news.NewsViewModel
 
-class NewsDataBindingActivity : AppCompatActivity(), NewsObserverListener, NewsView {
+class NewsDataBindingActivity : AppCompatActivity(), NewsObserverListener {
   private lateinit var newsBinding: ActivityNewsBinding
   private lateinit var newsViewModel: NewsViewModel
-  private lateinit var newsRepository: NewsRepository
   private lateinit var newsObserver: NewsObserver
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-
-    newsRepository = NewsRepository(this, applicationContext)
 
     // setup list
     var newsAdapter = NewsAdapter(applicationContext)
@@ -58,19 +55,11 @@ class NewsDataBindingActivity : AppCompatActivity(), NewsObserverListener, NewsV
         }
       }
     })
-    newsRepository.fetchNews()
+    newsViewModel.fetchNews()
   }
 
   override fun fetchNews() {
-    newsRepository.fetchNews()
-  }
-
-  override fun success(newsList: ArrayList<News>) {
-    newsViewModel.setNewsList(newsList)
-  }
-
-  override fun failure() {
-    newsViewModel.setNewsList(ArrayList<News>())
+    newsViewModel.fetchNews()
   }
 
   companion object {

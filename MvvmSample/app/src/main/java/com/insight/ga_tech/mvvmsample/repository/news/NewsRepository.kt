@@ -7,7 +7,7 @@ import com.insight.ga_tech.mvvmsample.viewmodel.news.NewsView
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
-class NewsRepository(private val newsView: NewsView, private val context: Context) {
+class NewsRepository(private val newsView: NewsView) {
   fun fetchNews() {
     NewsService
         .news()
