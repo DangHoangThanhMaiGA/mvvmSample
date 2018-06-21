@@ -11,6 +11,6 @@ interface NewsApi {
   fun fetchNews(): Observable<Response<News>>
 
   companion object {
-    private const val PATH = "http://www.mocky.io/v2/5b29f83d3000006b009cd0b9"
+    private const val PATH = "http://www.mocky.io/v2/5b2b038a3000004c009cd528"
   }
 }

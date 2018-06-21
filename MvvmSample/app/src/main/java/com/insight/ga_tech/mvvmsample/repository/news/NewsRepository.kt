@@ -1,6 +1,5 @@
 package com.insight.ga_tech.mvvmsample.repository.news
 
-import android.content.Context
 import com.insight.ga_tech.mvvmsample.data.network.service.NewsService
 import com.insight.ga_tech.mvvmsample.model.News
 import com.insight.ga_tech.mvvmsample.viewmodel.news.NewsView
